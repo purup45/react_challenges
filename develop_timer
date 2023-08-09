@@ -1,0 +1,36 @@
+import "./styles.css";
+import { useState } from "react";
+
+export default function App() {
+  let [val,setVal]=useState(0)
+  let mytimer
+ const startTimer = () => {
+    // Complete this function, global variable
+    window.mytimer = setInterval(()=>{
+    
+      setVal(val = val+ 1)
+
+    },1000)
+    
+  };
+  const resetTimer = () => {
+    // Complete this function
+    clearInterval(window.mytimer)
+    setVal(0)
+  };
+  const stopTimer = () => {
+    // Complete this function
+    
+      clearInterval(window.mytimer)
+  };
+  
+  return (
+    <div className="container">
+      <h1>Timer</h1>
+      <span> {Math.trunc(val/60)} mins </span>
+      <span> {val%60} secs</span>
+      <div>
+        <button onClick={startTimer}>Start</button>
+        <button onClick={stopTimer}>Stop</button>
+        <button onClick={resetTimer}>Reset</button>
+      </div>
