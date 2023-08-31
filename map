@@ -1,0 +1,31 @@
+/*app.jsx*/
+import React from 'react';
+
+export function App(props) {
+  const Users=()=>([{
+    'name':'Prem',
+    'num':'123'
+  },
+  {'name':'Riya',
+  'num':'456'}])
+  const Userss=Users()
+  return (
+    <div className='App'>
+      <h1>Hello React.</h1>
+      <h2>Start editing to see some magic happen!</h2>
+
+/* map function should be enclosed in {}"/
+     
+<ul>{Userss.map((user)=>(
+      
+      <li key={user.name} style={{'color': 'red', 'fontStyle':'italic'}}>{user.name}</li> /* inline style */
+      )
+     
+      )}</ul> )
+       
+    </div>
+  );
+}
+
+// Log to console
+console.log('Hello console')
