@@ -1,0 +1,36 @@
+import React, { useState } from "react";
+
+export default function App() {
+  const [cities, setCities] = useState([]); // Initialize state to store cities
+  const [cityInput, setCityInput] = useState(""); // Initialize state to capture input
+
+  const addCity = () => {
+    if (cityInput.trim() !== "") {
+      // Only add non-empty cities
+      setCities([...cities, cityInput]); // Add the city to the list
+      setCityInput(""); // Clear the input field
+    }
+  };
+ const delCity=(removeCity)=>{
+   setCities(cities.filter(city=>city!==removeCity))
+ }
+  return (
+    <div className="App">
+      <h1>Hello CodeSandbox</h1>
+      <h2>Start editing to see some magic happen!</h2>
+      <input
+        name="city"
+        type="text"
+        placeholder="add items/tasks"
+        value={cityInput}
+        onChange={(e) => setCityInput(e.target.value)}
+      />
+      <button onClick={addCity}>Add</button>
+      <ul>
+        {cities.map((city, index) => (
+          <li key={index} style={{'color':'red'}}>{city }  <button onClick={()=>delCity(city)}>X</button></li>
+        ))}
+      </ul>
+    </div>
+  );
+}
