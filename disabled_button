@@ -2,18 +2,7 @@ import "./styles.css";
 import {useState} from 'react'
 export default function App() {
   
-    const [input,setInput] = useState("");
-    
-    const status=(input)=>{
-      console.log(input)
-      if(input===""){
-        return false
-      }
-      else{
-        return true
-      }
-    }
-    console.log(status,input)
+    const [input,setInput] = useState("")
     return (
       <><input placeholder="ehy" onChange={(e)=>setInput((e.target.value))}></input>
         <button disabled={input===""}>Hide Element Below</button> // disabled={input<1}
