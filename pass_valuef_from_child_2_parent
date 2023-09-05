@@ -1,0 +1,25 @@
+import React, { useState } from 'react';
+
+//best way to avoid probelms is to keep the prop and the consts set as same(here setInputValue(child) and setInputVal(parent) is being used, make it same to avoid confusions
+//make a child function and call it using it as a tag
+//pass the prop/value inside "{}" func child({props})
+export default function App() {
+  const [inputVal, setInputVal] = useState("please update me from child");
+  function Child({setInputValue}) {
+    return(
+    <>
+    <h1>Child</h1>
+    <button onClick={()=>setInputValue("updated the Parent from child")}>SentInfoToParent</button> //check the initialise useState set value(setInputVal) which is different from the set value here
+    
+    <p>Pass the value to the parent</p>
+    </> 
+    )};
+  
+
+return(
+  <>
+  <h1>Parent</h1>
+  <p>{inputVal}</p>
+  <Child setInputValue={setInputVal}/>// check the prop sent from child is setInputVal and parent value is setInputValue.
+  </>
+)}
