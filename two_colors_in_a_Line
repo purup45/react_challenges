@@ -1,0 +1,31 @@
+import { useState } from 'react';
+
+export default function App() {
+  const [percentage, setPercentage] = useState(0);
+
+  const handleInputChange = (e) => {
+    const newValue = (e.target.value);
+    if (!isNaN(newValue) && newValue >= 0 && newValue <= 100) {
+      setPercentage(newValue);
+    }
+  };
+
+  const backgroundStyle = {
+    background: `linear-gradient(to right, red ${percentage}%, blue ${percentage}%)`,
+    height: '5px', // Set the height of the line
+  };
+
+  return (
+    <div className="App">
+      <h1>Hello CodeSandbox</h1>
+      <div className="gradient-line" style={backgroundStyle}></div>
+      <input
+        type="number"
+        value={percentage}
+        onChange={handleInputChange}
+        min="0"
+        max="100"
+      />
+    </div>
+  );
+}
