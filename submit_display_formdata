@@ -1,0 +1,76 @@
+import "./styles.css";
+import {useState} from 'react'
+
+export default function App() {
+  const [formdata,setFormdata]=useState({
+    username:'',
+    fullname:'',
+    age:''
+  })
+  const [display,setDisplay]=useState(false)
+  
+  const handleSubmit=(e)=>{
+    
+    e.preventDefault()
+
+    // const {username,fullname,age}=formdata
+
+    setDisplay(true)
+   //console.log("Form Data:", { username, fullname, age });
+  }
+const handleInputChange=(e)=>{
+  const {name,value} = e.target
+  setFormdata({
+    ...formdata,
+    [name]:value
+  })
+  console.log(formdata)
+
+}
+
+  return (
+   <div>
+     
+      <form onSubmit={handleSubmit}>Username:
+      <br/>
+      <input 
+      type='text' 
+      placeholder='test' 
+      name='username'
+      value={formdata.username}
+      onChange={handleInputChange}></input>
+      <br/>
+      FullName:
+      <br/>
+      <input 
+      type='text' 
+      placeholder='name' 
+      name='fullname'
+      value={formdata.fullname}
+      onChange={handleInputChange}
+      ></input>
+      <br/>
+      Age:
+      <br/>
+      <input 
+      type='number' 
+      placeholder='34' 
+      name='age'
+      value={formdata.age}
+      onChange={handleInputChange}></input>
+      <br/>
+      <br/>
+      <button>Submit</button>
+      </form>
+    {display?<div>
+       <h1> Request Sent to DB with below request data</h1>
+       <ul>
+          <li>Username: {formdata.username}</li>
+          <li>FullName: {formdata.fullname}</li>
+          <li>Age: {formdata.age}</li></ul>
+             
+     </div>:<></>}
+    </div>
+   
+  );
+}
