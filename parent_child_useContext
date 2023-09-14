@@ -1,0 +1,53 @@
+//create context, then useContext, import in context.Provider
+
+//if two files App.js and Child.js
+
+//App.js
+import { createContext } from 'react';
+import MyComponent from './Child'
+
+export const Context = createContext('ko');
+export default function App() {
+  const value = 'My Context Value';
+  return (
+    <Context.Provider value={value}>
+      <MyComponent />
+    </Context.Provider>
+  );
+}
+
+//Child.js
+
+import { useContext } from 'react';
+import {Context} from './App';
+
+export default function MyComponent() {
+  const value = useContext(Context);
+
+  return <span>{value}</span>;
+}
+
+//using everything in same app/module 
+
+import "./styles.css";
+import { createContext,useContext } from 'react';
+
+const MyContext = createContext();
+
+
+function OtherChild() {
+  const use_msg = useContext(MyContext);
+
+  return (
+    <div> hey {use_msg}</div>
+  );
+}
+export default function App() {
+  return (
+    <div className="App">
+      <MyContext.Provider value='helo'>
+        <OtherChild />
+      </MyContext.Provider>
+    </div>
+  );
+}
