@@ -1,0 +1,106 @@
+Story for the challenge
+Suppose you're creating a portfolio and want to showcase your certificates on one of the screens. In that case, you can make each certificate card visually appealing by giving it a different border color. To achieve this, you can apply an array of colors to the certificate cards in ascending order.
+
+Background Colors
+
+const bgColors = [
+  '#F0FAFF', // Very Light Blue
+  '#F7FDFA', // Very Light Green
+  '#F5F2FF', // Very Light Purple
+  '#FFF1F1', // Very Light Pink
+  '#FEFFED', // Very Light Yellow
+]
+You need to assign a different background color for each certificate card in ascending order. Here are the details:
+
+Assign colors to cards: The first certificate card should have the first color (#F0FAFF) from the colors array, the second card should have the second color, and so on. When all five colors have been used, it should restart from the first color.
+Handle fewer cards: In case you have fewer cards in the data object than the number of colors, for example, if you only have 3 cards, then it should use only the first 3 colors.
+
+
+
+const certificates = [
+  {
+    id: '01',
+    title: 'Python 3 Master Course for 2021',
+    platform: 'Udemy',
+    date: 'Nov 08, 2021',
+  },
+  {
+    id: '02',
+    title: 'Web Development',
+    platform: 'mimi',
+    date: 'Dec 12, 2021',
+  },
+  {
+    id: '03',
+    title: 'Learn C++ Course',
+    platform: 'Codecademy',
+    date: 'Jan 03, 2022',
+  },
+  {
+    id: '04',
+    title: 'JavaScript (Intermediate)',
+    platform: 'HackerRank',
+    date: 'Apr 14, 2021',
+  },
+  {
+    id: '05',
+    title: 'Scientific Computing with Python',
+    platform: 'freeCodeCamp',
+    date: 'Mar 02, 2021',
+  },
+  {
+    id: '06',
+    title: 'Microsoft AI Classroom Series',
+    platform: 'Microsoft',
+    date: 'Jan 03, 2021',
+  },
+  {
+    id: '07',
+    title: 'Become a Software Developer',
+    platform: 'LinkedIn',
+    date: 'Oct 25, 2021',
+  },
+  {
+    id: '08',
+    title: 'JavaScript Algorithms and Data Structures',
+    platform: 'freeCodeCamp',
+    date: 'Jul 09, 2022',
+  },
+]
+
+const bgColors = [
+  '#F0FAFF', // Very Light Blue
+  '#F7FDFA', // Very Light Green
+  '#F5F2FF', // Very Light Purple
+  '#FFF1F1', // Very Light Pink
+  '#FEFFED', // Very Light Yellow
+]
+
+const CertificatesBackground = () => {
+  return (
+    <div className="container">
+      <h1 className='main-title'>Certificates</h1>
+      <div>
+        {certificates.map(({ id, title, platform, date }, index) => (
+          <div
+            className='card'
+            //Code included
+            style={{background:bgColors[index%bgColors.length]}}
+            key={id}
+          >
+            <div>
+              <h3 className="title">{title}</h3>
+              <p className='platform'>{platform}</p>
+            </div>
+            <div className="flx">
+              <span className='date'>{date}</span>
+              <button className='view-btn'>View</button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+ReactDOM.render(<CertificatesBackground />, document.getElementById('root'))
