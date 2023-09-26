@@ -1,0 +1,36 @@
+
+app(style.css)
+  
+.App {
+  font-family: sans-serif;
+  text-align: center;
+} 
+.App.dark {
+  background-color: #333;
+  color: #fff;
+}
+.App.light {
+  background-color: rgb(185, 52, 52);
+  color: #333;
+}
+app.jsx
+import "./styles.css";
+import React, { useState } from 'react';
+
+export default function App() {
+  const [theme, setTheme] = useState("light");
+
+  const toggleTheme = () => {
+    setTheme((currentTheme) => (currentTheme === "light" ? "dark" : "light"));
+  };
+
+  return (
+    <div className={`App ${theme}`}>
+      <h1>Hello CodeSandbox</h1>
+      <h2>Start editing to see some magic happen!</h2>
+      <button onClick={toggleTheme}>              ####or####  <button onClick={()=>setTheme(theme==="light"?'dark':'light')}>{theme && theme==='light'?'Dark Mode':'Light Mode'}</button>
+        {theme === "light" ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
+      </button>
+    </div>
+  );
+}
