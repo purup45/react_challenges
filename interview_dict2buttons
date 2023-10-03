@@ -4,10 +4,10 @@ import { useState } from "react";
 
 // things you learns
       //object mapping/object length checking
-      //list "includes" option
+      //list "includes" option and push method for list
       //spread operator
       //accessing fcns inside the buttons option like style
-      //deleting an item from list(list.filter=>using temp list)
+      //deleting an item from list(list.filter=>using temp list) or using splice method
      //deleting an item from obj(delete obj[])
 
 export default function App() {
@@ -89,6 +89,95 @@ export default function App() {
           key={value}
           value={value}
           onClick={selected}
+        >
+          {value}
+        </button>
+      ))}
+    </div>
+  );
+}
+// refactored code.... includes
+//list includes
+//list splicing/indexing to remove the item
+//spread operator of object={...obj} and of list=[...list]
+//color: selectedItems.includes(value) ? "red" : "blue"
+import "./styles.css";
+import React, { useState } from "react";
+
+export default function App() {
+  // Initial dictionary of options
+  const initialOptions = {
+    Bhutan: "Thimphu",
+    India: "Delhi",
+    Canada: "Toronto",
+    Nepal: "Kathmandu"
+  };
+
+  // UseState for options and selected items
+  const [options, setOptions] = useState(initialOptions);
+  const [selectedItems, setSelectedItems] = useState([]);
+
+  // Function to handle item selection
+  const handleItemSelect = (item) => {
+    // Create a copy of the selectedItems array
+    const updatedSelectedItems = [...selectedItems];
+
+    // If the item is already selected, deselect it
+    if (updatedSelectedItems.includes(item)) {
+      updatedSelectedItems.splice(updatedSelectedItems.indexOf(item), 1);
+    } else if (updatedSelectedItems.length < 2) {
+      // If less than two items are selected, add the item
+      updatedSelectedItems.push(item);
+    }
+
+    // Update the selected items array
+    setSelectedItems(updatedSelectedItems);
+
+    // Check for a pair and update options
+    if (updatedSelectedItems.length === 2) {
+      const [firstItem, secondItem] = updatedSelectedItems;
+      if (options[firstItem] === secondItem || options[secondItem] === firstItem) {
+        // If it's a pair, remove the items from options
+        const updatedOptions = { ...options };
+        delete updatedOptions[firstItem];
+        delete updatedOptions[secondItem];
+        setOptions(updatedOptions);
+        setSelectedItems([]);
+
+        // Check if all pairs are found
+        Object.keys(updatedOptions).length === 0?
+          alert("Congratulations! You found all the pairs.")
+        :alert("You found a pair!")
+        
+      }
+    }
+  };
+
+  return (
+    <div className="App">
+      {/* Map through options and create buttons for keys */}
+      {Object.keys(options).map((key) => (
+        <button
+          key={key}
+          value={key}
+          style={{
+            color: selectedItems.includes(key) ? "red" : "blue"
+          }}
+          onClick={() => handleItemSelect(key)}
+        >
+          {key}
+        </button>
+      ))}
+
+      {/* Map through options and create buttons for values */}
+      {Object.values(options).map((value) => (
+        <button
+          key={value}
+          value={value}
+          style={{
+            color: selectedItems.includes(value) ? "red" : "blue"
+          }}
+          onClick={() => handleItemSelect(value)}
         >
           {value}
         </button>
