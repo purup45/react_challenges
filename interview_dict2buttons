@@ -1,6 +1,13 @@
 import "./styles.css";
 import { useState } from "react";
 
+
+// things you learns
+      //object mapping/object length checking
+      //list "includes" option
+      //spread operator
+      //accessing fcns inside the buttons option like style
+
 export default function App() {
   const initial = {
     Bhutan: "Thimphu",
@@ -8,6 +15,7 @@ export default function App() {
     Canada: "Toronto",
     Nepal: "Kathmandu"
   };
+
   // for changes to original obj(dict)
   const [options, setOptions] = useState(initial);
   //for temp obj updates
