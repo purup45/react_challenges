@@ -7,6 +7,8 @@ import { useState } from "react";
       //list "includes" option
       //spread operator
       //accessing fcns inside the buttons option like style
+      //deleting an item from list(list.filter=>using temp list)
+     //deleting an item from obj(delete obj[])
 
 export default function App() {
   const initial = {
@@ -59,8 +61,8 @@ export default function App() {
         setOptions(newoption)
        
         
-       
-        alert("you found a pair");
+       //obj length checking
+        Object.keys(newoption).length===0?alert("you completed the task"):alert("you found a pair")
       }
       }};
 
