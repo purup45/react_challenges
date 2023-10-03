@@ -1,0 +1,88 @@
+import "./styles.css";
+import { useState } from "react";
+
+export default function App() {
+  const initial = {
+    Bhutan: "Thimphu",
+    India: "Delhi",
+    Canada: "Toronto",
+    Nepal: "Kathmandu"
+  };
+  // for changes to original obj(dict)
+  const [options, setOptions] = useState(initial);
+  //for temp obj updates
+  const newoption=options
+
+// for selected button info updates
+  const [selection, setSelection] = useState([]);
+  
+  
+
+  const selected = (e) => {
+    //console.log(e.target.style.color);
+    e.target.style.color = e.target.style.color === "blue" ? "red" : "blue";
+
+         // if selection list already includes the button clicked
+    if (selection.includes(e.target.value)) {
+      console.log("Can't select  the same option twice");
+
+            // Filter out the selected value from the list by making a temp list
+      const newList = selection.filter((item) => item !== e.target.value);
+      setSelection(newList);
+
+      
+  }else if (selection.length === 2) {
+      e.target.style.color = "blue";
+      console.log(selection, "cant select more than two options");
+    
+    
+    } else {
+      const updatedList = [...selection, e.target.value];
+      setSelection(updatedList);
+      //console.log(updatedList, "updatedList",,selection,'selection');
+      setLen(selection);
+      if (
+        (options[updatedList[0]] === updatedList[1] ||
+        options[updatedList[1]] === updatedList[0]) && updatedList.length===2) 
+       {
+        delete (newoption[updatedList[1]])
+        delete (newoption[updatedList[0]])
+        setSelection([])
+        setOptions(newoption)
+       
+        
+       
+        alert("you found a pair");
+      }
+      }};
+
+  return (
+    <div className="App">
+    //dict mapping for keys and values to buttons
+      {Object.entries(options).map(([key, value]) => (
+        <button
+          style={{
+            color: "blue"
+          }}
+          key={key}
+          value={key}
+          onClick={selected}
+        >
+          {key}
+        </button>
+      ))}
+      {Object.values(options).map((value) => (
+        <button
+          style={{
+            color: "blue"
+          }}
+          key={value}
+          value={value}
+          onClick={selected}
+        >
+          {value}
+        </button>
+      ))}
+    </div>
+  );
+}
