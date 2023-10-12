@@ -74,3 +74,23 @@ const handleInputChange=(e)=>{
    
   );
 }
+
+export default function App() {
+  const [obj,setObj]=useState({
+    name:'',
+    age:'',
+  })
+  let newer
+  const click=(e)=>{
+    e.preventDefault()
+    setObj({...obj,'hey':'riya'})
+  }
+  return (
+    <div className="App">
+      <button onClick={click}>click</button>
+      <p>{JSON.stringify(obj)}</p>
+     
+    </div>
+  );
+}
+
