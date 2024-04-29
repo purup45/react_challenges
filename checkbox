@@ -1,0 +1,46 @@
+import React, { useState } from 'react';
+
+const App = () => {
+  const [checkboxState, setCheckboxState] = useState({
+    apartment_type: false,
+    building_type: false,
+  });
+
+  const handleCheckboxChange = (e) => {
+    const { name, checked } = e.target;
+    setCheckboxState({
+      ...checkboxState,
+      [name]: checked,
+    });
+  };
+
+  return (
+    <div>
+      <label htmlFor="apartment_type">Type</label>
+      <div className="horizontal">
+        <div className="form-group">
+          <label>Apartment</label>
+          <input
+            type="checkbox"
+            name="apartment_type"
+            value="apartment"
+            checked={checkboxState.apartment_type}
+            onChange={handleCheckboxChange}
+          />
+        </div>
+        <div className="form-group">
+          <label>Building</label>
+          <input
+            type="checkbox"
+            name="building_type"
+            value="building"
+            checked={checkboxState.building_type}
+            onChange={handleCheckboxChange}
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default App;
